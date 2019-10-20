@@ -33,6 +33,27 @@
 #define FAR_API
 #endif
 
+// Aligned types for input and output buffers
+#ifdef _MSC_VER
+typedef struct byte4 {
+  char __declspec(align(4)) c;
+} byte4;
+typedef struct byte8 {
+  char __declspec(align(8)) c;
+} byte8;
+typedef struct byte16 {
+  char __declspec(align(16)) c;
+} byte16;
+typedef struct byte32 {
+  char __declspec(align(32)) c;
+} byte32;
+#else   // _MSC_VER
+typedef char __attribute__((align(4))) byte4;
+typedef char __attribute__((align(8))) byte4;
+typedef char __attribute__((align(16)) byte16;
+typedef char __attribute__((align(32)) byte32;
+#endif  // _MSC_VER
+
 // Aligned allocations for SIMD
 #if !defined(FAR_CUSTOM_ALLOCATORS)
 #ifdef _MSC_VER
@@ -62,6 +83,12 @@ inline void* FAR_FN(malloc_align)(size_t size, size_t align) {
 #define far_free_align(p) free(p)
 #endif  // __cplusplus
 #endif
+inline byte32* FAR_FN(malloc_align32)(size_t size) {
+  return (byte32*)FAR_FN(malloc_align)(size, 32);
+}
+inline void FAR_FN(free_align32)(byte32* ptr) {
+  FAR_FN(free_align)((char*)ptr);
+}
 #endif  //! defined(FAR_CUSTOM_ALLOCATORS)
 
 // Pointer aliasing optimization
@@ -69,4 +96,4 @@ inline void* FAR_FN(malloc_align)(size_t size, size_t align) {
 
 #ifdef _MSC_VER
 #include <intrin.h>
-#endif
+#endif  // _MSC_VER

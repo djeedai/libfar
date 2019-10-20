@@ -9,11 +9,11 @@
 // - _mm_shuffle_ps()
 // - _mm_stream_ps()
 
-void FAR_FN(upsample2f32_sse41)(const char* FAR_RESTRICT buf_in,
+void FAR_FN(upsample2f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                 size_t size_in,
                                 int sample_rate,
                                 int num_channels,
-                                char* FAR_RESTRICT buf_out,
+                                byte16* FAR_RESTRICT buf_out,
                                 size_t size_out) {
   const float* src = (const float* FAR_RESTRICT)buf_in;
   float* dst = (float* FAR_RESTRICT)buf_out;
@@ -94,11 +94,11 @@ void FAR_FN(upsample2f32_sse41)(const char* FAR_RESTRICT buf_in,
   }
 }
 
-void FAR_FN(upsample3f32_sse41)(const char* FAR_RESTRICT buf_in,
+void FAR_FN(upsample3f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                 size_t size_in,
                                 int sample_rate,
                                 int num_channels,
-                                char* FAR_RESTRICT buf_out,
+                                byte16* FAR_RESTRICT buf_out,
                                 size_t size_out) {
   const float* src = (const float* FAR_RESTRICT)buf_in;
   float* dst = (float* FAR_RESTRICT)buf_out;
@@ -198,11 +198,11 @@ void FAR_FN(upsample3f32_sse41)(const char* FAR_RESTRICT buf_in,
   }
 }
 
-void FAR_FN(downsample2f32_sse41)(const char* FAR_RESTRICT buf_in,
+void FAR_FN(downsample2f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                   size_t size_in,
                                   int sample_rate,
                                   int num_channels,
-                                  char* FAR_RESTRICT buf_out,
+                                  byte16* FAR_RESTRICT buf_out,
                                   size_t size_out) {
   const float* src = (const float*)buf_in;
   float* dst = (float*)buf_out;
@@ -259,11 +259,11 @@ void FAR_FN(downsample2f32_sse41)(const char* FAR_RESTRICT buf_in,
   }
 }
 
-void FAR_FN(downsample3f32_sse41)(const char* FAR_RESTRICT buf_in,
+void FAR_FN(downsample3f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                   size_t size_in,
                                   int sample_rate,
                                   int num_channels,
-                                  char* FAR_RESTRICT buf_out,
+                                  byte16* FAR_RESTRICT buf_out,
                                   size_t size_out) {
   const float* src = (const float*)buf_in;
   float* dst = (float*)buf_out;

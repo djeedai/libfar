@@ -1,48 +1,48 @@
 
 #include "libfar.h"
 
-extern void FAR_FN(upsample2f32_sse41)(const char* FAR_RESTRICT buf_in,
+extern void FAR_FN(upsample2f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                        size_t size_in,
                                        int sample_rate,
                                        int num_channels,
-                                       char* FAR_RESTRICT buf_out,
+                                       byte16* FAR_RESTRICT buf_out,
                                        size_t size_out);
-extern void FAR_FN(upsample3f32_sse41)(const char* FAR_RESTRICT buf_in,
+extern void FAR_FN(upsample3f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                        size_t size_in,
                                        int sample_rate,
                                        int num_channels,
-                                       char* FAR_RESTRICT buf_out,
+                                       byte16* FAR_RESTRICT buf_out,
                                        size_t size_out);
-extern void FAR_FN(downsample2f32_sse41)(const char* FAR_RESTRICT buf_in,
+extern void FAR_FN(downsample2f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                          size_t size_in,
                                          int sample_rate,
                                          int num_channels,
-                                         char* FAR_RESTRICT buf_out,
+                                         byte16* FAR_RESTRICT buf_out,
                                          size_t size_out);
-extern void FAR_FN(downsample3f32_sse41)(const char* FAR_RESTRICT buf_in,
+extern void FAR_FN(downsample3f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                          size_t size_in,
                                          int sample_rate,
                                          int num_channels,
-                                         char* FAR_RESTRICT buf_out,
+                                         byte16* FAR_RESTRICT buf_out,
                                          size_t size_out);
 
-extern void FAR_FN(upsample2f32_fpu)(const char* FAR_RESTRICT buf_in,
+extern void FAR_FN(upsample2f32_fpu)(const byte4* FAR_RESTRICT buf_in,
                                      size_t size_in,
                                      int sample_rate,
                                      int num_channels,
-                                     char* FAR_RESTRICT buf_out,
+                                     byte4* FAR_RESTRICT buf_out,
                                      size_t size_out);
-extern void FAR_FN(upsample3f32_fpu)(const char* FAR_RESTRICT buf_in,
+extern void FAR_FN(upsample3f32_fpu)(const byte4* FAR_RESTRICT buf_in,
                                      size_t size_in,
                                      int sample_rate,
                                      int num_channels,
-                                     char* FAR_RESTRICT buf_out,
+                                     byte4* FAR_RESTRICT buf_out,
                                      size_t size_out);
-extern void FAR_FN(downsample2f32_fpu)(const char* FAR_RESTRICT buf_in,
+extern void FAR_FN(downsample2f32_fpu)(const byte4* FAR_RESTRICT buf_in,
                                        size_t size_in,
                                        int sample_rate,
                                        int num_channels,
-                                       char* FAR_RESTRICT buf_out,
+                                       byte4* FAR_RESTRICT buf_out,
                                        size_t size_out);
 
 int g_cpuIdInitialized = 0;
@@ -85,75 +85,81 @@ int hasSse2() {
   return g_hasSSE2;
 }
 
-void FAR_FN(upsample2f32)(const char* FAR_RESTRICT buf_in,
+void FAR_FN(upsample2f32)(const byte32* FAR_RESTRICT buf_in,
                           size_t size_in,
                           int sample_rate,
                           int num_channels,
-                          char* FAR_RESTRICT buf_out,
+                          byte32* FAR_RESTRICT buf_out,
                           size_t size_out) {
   if (size_out < size_in * 2)
     return;
   if (/*hasSSE41*/ hasSse2())  // currently uses only SSE, not SSE4.1
   {
     FAR_FN(upsample2f32_sse41)
-    (buf_in, size_in, sample_rate, num_channels, buf_out, size_out);
-  } else
-  {
+    ((const byte16*)buf_in, size_in, sample_rate, num_channels,
+     (byte16*)buf_out, size_out);
+  } else {
     FAR_FN(upsample2f32_fpu)
-    (buf_in, size_in, sample_rate, num_channels, buf_out, size_out);
+    ((const byte4*)buf_in, size_in, sample_rate, num_channels, (byte4*)buf_out,
+     size_out);
   }
 }
 
-void FAR_FN(upsample3f32)(const char* FAR_RESTRICT buf_in,
+void FAR_FN(upsample3f32)(const byte32* FAR_RESTRICT buf_in,
                           size_t size_in,
                           int sample_rate,
                           int num_channels,
-                          char* FAR_RESTRICT buf_out,
+                          byte32* FAR_RESTRICT buf_out,
                           size_t size_out) {
   if (size_out < size_in * 3)
     return;
   if (/*hasSSE41*/ hasSse2())  // currently uses only SSE, not SSE4.1
   {
     FAR_FN(upsample3f32_sse41)
-    (buf_in, size_in, sample_rate, num_channels, buf_out, size_out);
+    ((const byte16*)buf_in, size_in, sample_rate, num_channels,
+     (byte16*)buf_out, size_out);
   } else {
     FAR_FN(upsample3f32_fpu)
-    (buf_in, size_in, sample_rate, num_channels, buf_out, size_out);
+    ((const byte4*)buf_in, size_in, sample_rate, num_channels, (byte4*)buf_out,
+     size_out);
   }
 }
 
-void FAR_FN(downsample2f32)(const char* FAR_RESTRICT buf_in,
+void FAR_FN(downsample2f32)(const byte32* FAR_RESTRICT buf_in,
                             size_t size_in,
                             int sample_rate,
                             int num_channels,
-                            char* FAR_RESTRICT buf_out,
+                            byte32* FAR_RESTRICT buf_out,
                             size_t size_out) {
   if (size_out < size_in / 2)
     return;
   if (/*hasSSE41*/ hasSse2())  // currently uses only SSE, not SSE4.1
   {
     FAR_FN(downsample2f32_sse41)
-    (buf_in, size_in, sample_rate, num_channels, buf_out, size_out);
+    ((const byte16*)buf_in, size_in, sample_rate, num_channels,
+     (byte16*)buf_out, size_out);
   } else {
     FAR_FN(downsample2f32_fpu)
-    (buf_in, size_in, sample_rate, num_channels, buf_out, size_out);
+    ((const byte4*)buf_in, size_in, sample_rate, num_channels, (byte4*)buf_out,
+     size_out);
   }
 }
 
-void FAR_FN(downsample3f32)(const char* FAR_RESTRICT buf_in,
+void FAR_FN(downsample3f32)(const byte32* FAR_RESTRICT buf_in,
                             size_t size_in,
                             int sample_rate,
                             int num_channels,
-                            char* FAR_RESTRICT buf_out,
+                            byte32* FAR_RESTRICT buf_out,
                             size_t size_out) {
   if (size_out < size_in / 3)
     return;
   if (/*hasSSE41*/ hasSse2())  // currently uses only SSE, not SSE4.1
   {
     FAR_FN(downsample3f32_sse41)
-    (buf_in, size_in, sample_rate, num_channels, buf_out, size_out);
-  } else {
-    FAR_FN(downsample3f32_fpu)
-    (buf_in, size_in, sample_rate, num_channels, buf_out, size_out);
-  }
+    ((const byte16*)buf_in, size_in, sample_rate, num_channels,
+     (byte16*)buf_out, size_out);
+  } /* else {
+     FAR_FN(downsample3f32_fpu)
+     (buf_in, size_in, sample_rate, num_channels, buf_out, size_out);
+   }*/
 }
