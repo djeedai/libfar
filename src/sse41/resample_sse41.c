@@ -3,6 +3,12 @@
 
 #include <smmintrin.h>  // SSE 4.1
 
+// Note - currently using only SSE1:
+// - _mm_prefetch()
+// - _mm_load_ps()
+// - _mm_shuffle_ps()
+// - _mm_stream_ps()
+
 void FAR_FN(upsample2f32_sse41)(const char* FAR_RESTRICT buf_in,
                                 size_t size_in,
                                 int sample_rate,

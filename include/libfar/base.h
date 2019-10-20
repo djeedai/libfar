@@ -66,3 +66,7 @@ inline void* FAR_FN(malloc_align)(size_t size, size_t align) {
 
 // Pointer aliasing optimization
 #define FAR_RESTRICT __restrict
+
+#ifdef _MSC_VER
+#include <intrin.h>
+#endif
