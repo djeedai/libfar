@@ -86,3 +86,46 @@ void FAR_FN(free_align32)(byte32* ptr) {
   // ...
 }
 ```
+
+## Features
+
+### Resampling
+
+Change the sample rate by an integral factor.
+
+| Name | Data type | Description |
+|---|---|---|
+| `upsample2f32` | `float32` | Upsample 1x -> 2x |
+| `upsample3f32` | `float32` | Upsample 1x -> 3x |
+| `downsample2f32` | `float32` | Downsample 2x -> 1x |
+| `downsample3f32` | `float32` | Downsample 3x -> 1x |
+
+### Channel adapting
+
+Change the number of channels.
+
+| Name | Data type | Description |
+|---|---|---|
+| `adapt_ch1x2s16` | `int16` | Mono (1) -> Stereo (2) |
+| `adapt_ch1x2f32` | `float32` | Mono (1) -> Stereo (2) |
+| `adapt_ch2x1s16` | `int16` | Stereo (2) -> Mono (1) |
+| `adapt_ch2x1f32` | `float32` | Stereo (2) -> Mono (1) |
+
+### Memory
+
+| Name | Description |
+|---|---|
+| `malloc_align(size, align)` | Allocate a block of memory with the given size and alignment. |
+| `free_align(ptr)` | Free a block of memory allocated with `malloc_align`. |
+| `malloc_align32(size)` | Allocate a 32-byte aligned block of memory with the given size. Shorthand for `malloc_align(size, 32)`. |
+| `free_align32(ptr)` | Free a block of memory allocated with `malloc_align32`. |
+
+### CPUID
+
+| Name | Description |
+|---|---|
+| `void cpuid_init()` | Query and cache the hardware feature support for the host machine. Called once automatically before any of the other functions below; the result is cached after that. |
+| `int has_sse()` | Return `true` if SSE is available on the host machine. |
+| `int has_sse2()` | Return `true` if SSE2 is available on the host machine. |
+| `int has_sse41()` | Return `true` if SSE4.1 is available on the host machine. |
+| `int has_sse42()` | Return `true` if SSE4.2 is available on the host machine. |
