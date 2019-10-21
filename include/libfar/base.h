@@ -33,6 +33,12 @@
 #define FAR_API
 #endif
 
+// Base types
+typedef unsigned char uint8;
+static_assert(sizeof(uint8) == 1, "");
+typedef signed short int16;
+static_assert(sizeof(int16) == 2, "");
+
 // Aligned types for input and output buffers
 #ifdef _MSC_VER
 typedef struct byte4 {
@@ -47,6 +53,30 @@ typedef struct byte16 {
 typedef struct byte32 {
   char __declspec(align(32)) c;
 } byte32;
+typedef struct __declspec(align(16)) short128 {
+  signed short c[8];
+} short128;
+static_assert(sizeof(short128) == 16, "");
+typedef struct __declspec(align(32)) short256 {
+  signed short c[16];
+} short256;
+static_assert(sizeof(short256) == 32, "");
+typedef struct __declspec(align(64)) short512 {
+  signed short c[32];
+} short512;
+static_assert(sizeof(short512) == 64, "");
+typedef struct __declspec(align(16)) float128 {
+  float c[4];
+} float128;
+static_assert(sizeof(float128) == 16, "");
+typedef struct __declspec(align(32)) float256 {
+  float c[8];
+} float256;
+static_assert(sizeof(float256) == 32, "");
+typedef struct __declspec(align(64)) float512 {
+  float c[16];
+} float512;
+static_assert(sizeof(float512) == 64, "");
 #else   // _MSC_VER
 typedef char __attribute__((align(4))) byte4;
 typedef char __attribute__((align(8))) byte4;

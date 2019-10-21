@@ -1,6 +1,10 @@
 
 #include "libfar.h"
 
+#ifdef __cplusplus
+namespace libfar {
+#endif  // __cplusplus
+
 void FAR_FN(upsample2f32_fpu)(const byte4* FAR_RESTRICT buf_in,
                               size_t size_in,
                               int sample_rate,
@@ -186,3 +190,7 @@ void FAR_FN(downsample4f32_fpu)(const byte4* FAR_RESTRICT buf_in,
     }
   }
 }
+
+#ifdef __cplusplus
+}  // namespace libfar
+#endif  // __cplusplus

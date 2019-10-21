@@ -9,6 +9,10 @@
 // - _mm_shuffle_ps()
 // - _mm_stream_ps()
 
+#ifdef __cplusplus
+namespace libfar {
+#endif  // __cplusplus
+
 void FAR_FN(upsample2f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                 size_t size_in,
                                 int sample_rate,
@@ -326,3 +330,7 @@ void FAR_FN(downsample3f32_sse41)(const byte16* FAR_RESTRICT buf_in,
     }
   }
 }
+
+#ifdef __cplusplus
+}  // namespace libfar
+#endif  // __cplusplus

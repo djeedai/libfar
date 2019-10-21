@@ -1,0 +1,6 @@
+*.vcxproj*
+*.sln
+.vs
+Debug
+Release
+data
