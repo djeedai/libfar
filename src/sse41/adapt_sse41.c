@@ -12,6 +12,8 @@ void FAR_FN(adapt_ch1x2f32_sse41)(const float128* FAR_RESTRICT buf_in,
                                   int sample_rate,
                                   float128* FAR_RESTRICT buf_out,
                                   size_t size_out) {
+  FAR_UNUSED(sample_rate);
+  FAR_UNUSED(size_out);
   size_t num_samples = size_in / sizeof(float);
   const float* src = (const float* FAR_RESTRICT)buf_in;
   float* dst = (float* FAR_RESTRICT)buf_out;
@@ -56,6 +58,8 @@ void FAR_FN(adapt_ch2x1f32_sse41)(const float128* FAR_RESTRICT buf_in,
                                   int sample_rate,
                                   float128* FAR_RESTRICT buf_out,
                                   size_t size_out) {
+  FAR_UNUSED(sample_rate);
+  FAR_UNUSED(size_out);
   size_t num_samples = size_in / sizeof(float);
   const float* src = (const float* FAR_RESTRICT)buf_in;
   float* dst = (float* FAR_RESTRICT)buf_out;
@@ -88,6 +92,8 @@ void FAR_FN(adapt_ch1x2s16_sse41)(const short128* FAR_RESTRICT buf_in,
                                   int sample_rate,
                                   short128* FAR_RESTRICT buf_out,
                                   size_t size_out) {
+  FAR_UNUSED(sample_rate);
+  FAR_UNUSED(size_out);
   size_t num_samples = size_in / sizeof(int16);
   const int16* src = (const int16* FAR_RESTRICT)buf_in;
   int16* dst = (int16 * FAR_RESTRICT) buf_out;
@@ -130,6 +136,8 @@ void FAR_FN(adapt_ch2x1s16_sse41)(const short128* FAR_RESTRICT buf_in,
                                   int sample_rate,
                                   short128* FAR_RESTRICT buf_out,
                                   size_t size_out) {
+  FAR_UNUSED(sample_rate);
+  FAR_UNUSED(size_out);
   size_t num_samples = size_in / sizeof(int16);
   const int16* src = (const int16* FAR_RESTRICT)buf_in;
   int16* dst = (int16 * FAR_RESTRICT) buf_out;

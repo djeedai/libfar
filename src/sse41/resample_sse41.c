@@ -19,6 +19,8 @@ void FAR_FN(upsample2f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                 int num_channels,
                                 byte16* FAR_RESTRICT buf_out,
                                 size_t size_out) {
+  FAR_UNUSED(sample_rate);
+  FAR_UNUSED(size_out);
   const float* src = (const float* FAR_RESTRICT)buf_in;
   float* dst = (float* FAR_RESTRICT)buf_out;
   if (num_channels == 1) {
@@ -104,6 +106,8 @@ void FAR_FN(upsample3f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                 int num_channels,
                                 byte16* FAR_RESTRICT buf_out,
                                 size_t size_out) {
+  FAR_UNUSED(sample_rate);
+  FAR_UNUSED(size_out);
   const float* src = (const float* FAR_RESTRICT)buf_in;
   float* dst = (float* FAR_RESTRICT)buf_out;
   if (num_channels == 1) {
@@ -208,6 +212,8 @@ void FAR_FN(downsample2f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                   int num_channels,
                                   byte16* FAR_RESTRICT buf_out,
                                   size_t size_out) {
+  FAR_UNUSED(sample_rate);
+  FAR_UNUSED(size_out);
   const float* src = (const float*)buf_in;
   float* dst = (float*)buf_out;
   if (num_channels == 1) {
@@ -269,6 +275,8 @@ void FAR_FN(downsample3f32_sse41)(const byte16* FAR_RESTRICT buf_in,
                                   int num_channels,
                                   byte16* FAR_RESTRICT buf_out,
                                   size_t size_out) {
+  FAR_UNUSED(sample_rate);
+  FAR_UNUSED(size_out);
   const float* src = (const float*)buf_in;
   float* dst = (float*)buf_out;
   if (num_channels == 1) {

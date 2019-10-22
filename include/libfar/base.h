@@ -124,6 +124,9 @@ inline void FAR_FN(free_align32)(byte32* ptr) {
 // Pointer aliasing optimization
 #define FAR_RESTRICT __restrict
 
+// Unused parameter
+#define FAR_UNUSED(x) (void)x
+
 #ifdef _MSC_VER
 #include <intrin.h>
 #endif  // _MSC_VER
