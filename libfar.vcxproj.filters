@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\adapt.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpuid.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\resample.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fpu\adapt_fpu.c">
+      <Filter>src\fpu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fpu\resample_fpu.c">
+      <Filter>src\fpu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sse41\adapt_sse41.c">
+      <Filter>src\sse41</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sse41\resample_sse41.c">
+      <Filter>src\sse41</Filter>
+    </ClCompile>
+    <ClCompile Include="tools\main.c">
+      <Filter>tools</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\libfar.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\fpu\adapt_fpu.h">
+      <Filter>include\libfar\fpu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\sse41\adapt_sse41.h">
+      <Filter>include\libfar\sse41</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\adapt.h">
+      <Filter>include\libfar</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\base.h">
+      <Filter>include\libfar</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\cpuid.h">
+      <Filter>include\libfar</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\resample.h">
+      <Filter>include\libfar</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{ca28e073-4fec-42a4-ae7f-e074804ab996}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\fpu">
+      <UniqueIdentifier>{258a4dbc-1232-4815-ae7c-7860b20ef84e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\sse41">
+      <UniqueIdentifier>{e9ce8d1a-6144-4186-ae66-0762ad0bc47d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{9cb25dc3-66ac-45eb-8314-018e91b707f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\libfar">
+      <UniqueIdentifier>{a43a8e94-8069-4fcc-8b8d-10364c4c4146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\libfar\sse41">
+      <UniqueIdentifier>{b25b8175-8956-4a8f-af6f-23e3271c0551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\libfar\fpu">
+      <UniqueIdentifier>{505a3a0e-be06-4b4d-86a0-55f6c1c3f279}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tools">
+      <UniqueIdentifier>{3a5e9989-de1f-459e-b3c8-a8188d04471e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

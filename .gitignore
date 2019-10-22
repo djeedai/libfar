@@ -1,6 +1,5 @@
-*.vcxproj*
-*.sln
+*.vcxproj.user
 .vs
-Debug
-Release
+bin
+build
 data
