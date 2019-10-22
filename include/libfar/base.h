@@ -5,8 +5,8 @@
 #ifdef __cplusplus
 #include <cstdlib>
 #else  // __cplusplus
-#include <stdlib.h>
 #include <assert.h>
+#include <stdlib.h>
 #ifdef __clang__
 #include <stdalign.h>
 // Should be defined in assert.h in C11, but clang-cl is missing it
@@ -92,8 +92,14 @@ typedef char __attribute__((align(32)) byte32;
 #if !defined(FAR_CUSTOM_ALLOCATORS)
 #ifdef _MSC_VER
 #ifdef __cplusplus
-#define malloc_align(s, a) _aligned_malloc(s, a)
-#define free_align(p) _aligned_free(p)
+namespace libfar {
+inline void* malloc_align(size_t size, size_t align) {
+  return _aligned_malloc(size, align);
+}
+inline void free_align(void* ptr) {
+  _aligned_free(ptr);
+}
+}  // namespace libfar
 #else  // __cplusplus
 #define far_malloc_align(s, a) _aligned_malloc(s, a)
 #define far_free_align(p) _aligned_free(p)
@@ -117,12 +123,18 @@ inline void* FAR_FN(malloc_align)(size_t size, size_t align) {
 #define far_free_align(p) free(p)
 #endif  // __cplusplus
 #endif
+#ifdef __cplusplus
+namespace libfar {
+#endif
 inline byte32* FAR_FN(malloc_align32)(size_t size) {
   return (byte32*)FAR_FN(malloc_align)(size, 32);
 }
 inline void FAR_FN(free_align32)(byte32* ptr) {
   FAR_FN(free_align)((char*)ptr);
 }
+#ifdef __cplusplus
+}  // namespace libfar
+#endif
 #endif  //! defined(FAR_CUSTOM_ALLOCATORS)
 
 // Pointer aliasing optimization
