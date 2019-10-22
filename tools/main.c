@@ -16,7 +16,7 @@ byte32* read_pcm(const char* filename, size_t* size) {
   *size = ftell(fp);
   fseek(fp, 0, SEEK_SET);
   size_t aligned_size = (*size + 31) & ~(size_t)0x1F;
-  byte32* buffer = far_malloc_align32(aligned_size);
+  byte32* buffer = FAR_FN(malloc_align32)(aligned_size);
   if (!buffer) {
     return 0;
   }
@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
   }
   size_t size_out = size_in * 2;
   size_t aligned_size_out = (size_out + 31) & ~(size_t)0x1F;
-  byte32* buf_out = far_malloc_align32(aligned_size_out);
+  byte32* buf_out = FAR_FN(malloc_align32)(aligned_size_out);
   if (!buf_out) {
     free(buf_in);
     return -3;
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
     LARGE_INTEGER s, e, freq;
     QueryPerformanceCounter(&s);
     for (int i = 0; i < 100; ++i) {
-      far_downsample2f32(buf_in, size_in, 44100, 2, buf_out, aligned_size_out);
+      FAR_FN(downsample2f32)(buf_in, size_in, 44100, 2, buf_out, aligned_size_out);
     }
     QueryPerformanceCounter(&e);
     QueryPerformanceFrequency(&freq);
@@ -62,8 +62,8 @@ int main(int argc, char* argv[]) {
     double dt = (double)delta / freq.QuadPart;
     fprintf(stderr, "delta=%d dt=%f\n", (int)delta, dt);
   }
-  far_free_align32(buf_in);
+  FAR_FN(free_align32)(buf_in);
   write_pcm((const char*)buf_out, size_out, argv[2]);
-  far_free_align32(buf_out);
+  FAR_FN(free_align32)(buf_out);
   return 0;
 }

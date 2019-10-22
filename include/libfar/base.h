@@ -6,13 +6,17 @@
 #include <cstdlib>
 #else  // __cplusplus
 #include <stdlib.h>
-#ifndef _MSC_VER
+#include <assert.h>
+#ifdef __clang__
 #include <stdalign.h>
+// Should be defined in assert.h in C11, but clang-cl is missing it
+#define static_assert(b, m) _Static_assert(b, m)
 #endif  // _MSC_VER
 #endif  // __cplusplus
 #endif  // !defined(FAR_NO_STD_INCLUDES)
 
-#define FAR_CONCAT(a, b) a##b
+#define FAR_XCONCAT(a, b) a##b
+#define FAR_CONCAT(a, b) FAR_XCONCAT(a, b)
 
 // Default function naming strategy
 // - In C++, use a namespace
@@ -26,7 +30,7 @@
 #define FAR_FN_PREFIX far_
 #endif  // __cplusplus
 #endif  // !defined(FAR_FN_PREFIX)
-#define FAR_FN(x) FAR_CONCAT(far_, x)
+#define FAR_FN(x) FAR_CONCAT(FAR_FN_PREFIX, x)
 
 // To allow shared library compiling
 #if !defined(FAR_API)
