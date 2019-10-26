@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libfar", "libfar.vcxproj", "{63F72C73-16AA-49E2-B256-CA3185BAC6D3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libfar_test", "test\libfar_test.vcxproj", "{92145AF1-281C-4190-99E1-1E9333AE1077}"
+	ProjectSection(ProjectDependencies) = postProject
+		{63F72C73-16AA-49E2-B256-CA3185BAC6D3} = {63F72C73-16AA-49E2-B256-CA3185BAC6D3}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libfar_clang-cl", "libfar_clang-cl.vcxproj", "{28156598-8D7A-4BFD-B968-D7717A756ADC}"
 EndProject
