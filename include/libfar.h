@@ -2,7 +2,11 @@
 
 #include "libfar/base.h"
 
+// Query CPU support for SIMD extensions at runtime.
 #include "libfar/cpuid.h"
 
+// Adapt channel count (convert mono/stereo).
 #include "libfar/adapt.h"
+
+// Resample audio signal (change sampling frequency).
 #include "libfar/resample.h"
