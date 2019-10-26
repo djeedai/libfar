@@ -1,5 +1,5 @@
 
-#include "libfar.h"
+#include "libfar/fpu/resample_fpu.h"
 
 #ifdef __cplusplus
 namespace libfar {

@@ -4,7 +4,6 @@
 
 #ifdef __cplusplus
 namespace libfar {
-extern "C" {
 #endif  // __cplusplus
 
 /// Convert mono (1 channel) to stereo (2 channels) for float32 values in
@@ -38,6 +37,5 @@ void FAR_API FAR_FN(adapt_ch2x1s16_sse41)(const short128* FAR_RESTRICT buf_in,
                                           size_t size_out);
 
 #ifdef __cplusplus
-}  // extern "C"
 }  // namespace libfar
 #endif  // __cplusplus

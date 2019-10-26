@@ -48,6 +48,12 @@
     <ClInclude Include="include\libfar\resample.h">
       <Filter>include\libfar</Filter>
     </ClInclude>
+    <ClInclude Include="include\libfar\fpu\resample_fpu.h">
+      <Filter>include\libfar\fpu</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\sse41\resample_sse41.h">
+      <Filter>include\libfar\sse41</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />

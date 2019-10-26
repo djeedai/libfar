@@ -4,7 +4,6 @@
 
 #ifdef __cplusplus
 namespace libfar {
-extern "C" {
 #endif  // __cplusplus
 
 /// Query the CPU for hardware support.
@@ -23,6 +22,5 @@ int FAR_API FAR_FN(has_sse41)();
 int FAR_API FAR_FN(has_sse42)();
 
 #ifdef __cplusplus
-}  // extern "C"
 }  // namespace libfar
 #endif  // __cplusplus

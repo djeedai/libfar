@@ -34,7 +34,7 @@ void FAR_API FAR_FN(adapt_ch2x1f32)(const float512* FAR_RESTRICT buf_in,
                                     size_t size_out) {
   if (size_out < size_in / 2)
     return;
-  if (FAR_FN(has_sse)())  // currently uses only SSE, not SSE4.1
+  if (FAR_FN(has_sse41)())  // currently uses only SSE3, not SSE4.1
   {
     FAR_FN(adapt_ch2x1f32_sse41)
     ((const float128*)buf_in, size_in, sample_rate, (float128*)buf_out,

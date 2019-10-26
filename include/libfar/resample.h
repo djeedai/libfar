@@ -4,7 +4,6 @@
 
 #ifdef __cplusplus
 namespace libfar {
-extern "C" {
 #endif  // __cplusplus
 
 /// Upsample from given rate to 2x the given rate (e.g. 24kHz -> 48kHz)
@@ -44,6 +43,5 @@ void FAR_API FAR_FN(downsample3f32)(const byte32* FAR_RESTRICT buf_in,
                                     size_t size_out);
 
 #ifdef __cplusplus
-}  // extern "C"
 }  // namespace libfar
 #endif  // __cplusplus

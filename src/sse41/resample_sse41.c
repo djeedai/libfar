@@ -1,13 +1,13 @@
 
-#include "libfar.h"
+#include "libfar/sse41/resample_sse41.h"
 
 #include <smmintrin.h>  // SSE 4.1
 
-// Note - currently using only SSE1:
-// - _mm_prefetch()
-// - _mm_load_ps()
-// - _mm_shuffle_ps()
-// - _mm_stream_ps()
+// Note - currently using only SSE:
+// - _mm_prefetch()   : SSE
+// - _mm_load_ps()    : SSE
+// - _mm_shuffle_ps() : SSE
+// - _mm_stream_ps()  : SSE
 
 #ifdef __cplusplus
 namespace libfar {

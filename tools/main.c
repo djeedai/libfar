@@ -7,6 +7,10 @@
 #define WIN32_LEAN_AND_MEAN 1
 #include <windows.h>
 
+#ifdef __cplusplus
+using namespace libfar;
+#endif
+
 byte32* read_pcm(const char* filename, size_t* size) {
   FILE* fp = fopen(filename, "rb");
   if (!fp) {
@@ -34,7 +38,7 @@ void write_pcm(const char* buffer, size_t size, const char* filename) {
   fclose(fp);
 }
 
-int main(int argc, char* argv[]) {
+int run_tools(int argc, char* argv[]) {
   if (argc < 3) {
     return -1;
   }
