@@ -1,10 +1,12 @@
 
-#include "libfar/base.h"
 #include "libfar/cpuid.h"
+#include "libfar/base.h"
 
 static int g_cpuIdInitialized = 0;
 static int g_hasSSE = 0;
 static int g_hasSSE2 = 0;
+static int g_hasSSE3 = 0;
+static int g_hasSSSE3 = 0;
 static int g_hasSSE41 = 0;
 static int g_hasSSE42 = 0;
 
@@ -30,6 +32,8 @@ void FAR_FN(cpuid_init)() {
   }
   g_hasSSE = (edx1 & 0x02000000);
   g_hasSSE2 = (edx1 & 0x04000000);
+  g_hasSSE3 = (ecx1 & 0x00000001);
+  g_hasSSSE3 = (ecx1 & 0x00000200);
   g_hasSSE41 = (ecx1 & 0x00080000);
   g_hasSSE42 = (ecx1 & 0x00100000);
   // Support for AVX is more complex to test, requires 3 checks including
@@ -51,6 +55,20 @@ int FAR_FN(has_sse2)() {
     FAR_FN(cpuid_init)();
   }
   return g_hasSSE2;
+}
+
+int FAR_FN(has_sse3)() {
+  if (!g_cpuIdInitialized) {
+    FAR_FN(cpuid_init)();
+  }
+  return g_hasSSE3;
+}
+
+int FAR_FN(has_ssse3)() {
+  if (!g_cpuIdInitialized) {
+    FAR_FN(cpuid_init)();
+  }
+  return g_hasSSSE3;
 }
 
 int FAR_FN(has_sse41)() {
