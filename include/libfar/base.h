@@ -124,63 +124,10 @@ typedef char __attribute__((align(32)) byte32;
 
 // Aligned allocations for SIMD
 #if !defined(FAR_CUSTOM_ALLOCATORS)
-#ifdef _MSC_VER
 #ifdef __cplusplus
-namespace libfar {
-inline void* malloc_align(size_t size, size_t align) {
-  return _aligned_malloc(size, align);
-}
-inline void free_align(void* ptr) {
-  _aligned_free(ptr);
-}
-}  // namespace libfar
-#else  // __cplusplus
-#define far_malloc_align(s, a) _aligned_malloc(s, a)
-#define far_free_align(p) _aligned_free(p)
-#endif  // __cplusplus
-#else   // _MSC_VER
-#if (defined(DEBUG) || defined(_DEBUG)) && !defined(NDEBUG)
-inline void* FAR_FN(malloc_align)(size_t size, size_t align) {
-  assert(size % align == 0);
-  return aligned_alloc(align, size);
-};
-#else  // debug
-#ifdef __cplusplus
-#define malloc_align(s, a) aligned_alloc(a, s)
-#else  // __cplusplus
-#define far_malloc_align(s, a) aligned_alloc(a, s)
-#endif  // __cplusplus
-#endif  // debug
-#ifdef __cplusplus
-#define free_align(p) free(p)
-#else  // __cplusplus
-#define far_free_align(p) free(p)
-#endif  // __cplusplus
-#endif
-#ifdef __cplusplus
-namespace libfar {
-#endif
-inline byte16* FAR_FN(malloc_align16)(size_t size) {
-  return (byte16*)FAR_FN(malloc_align)(size, 16);
-}
-inline void FAR_FN(free_align16)(byte16* ptr) {
-  FAR_FN(free_align)((char*)ptr);
-}
-inline byte32* FAR_FN(malloc_align32)(size_t size) {
-  return (byte32*)FAR_FN(malloc_align)(size, 32);
-}
-inline void FAR_FN(free_align32)(byte32* ptr) {
-  FAR_FN(free_align)((char*)ptr);
-}
-inline byte64* FAR_FN(malloc_align64)(size_t size) {
-  return (byte64*)FAR_FN(malloc_align)(size, 64);
-}
-inline void FAR_FN(free_align64)(byte64* ptr) {
-  FAR_FN(free_align)((char*)ptr);
-}
-#ifdef __cplusplus
-#include "libfar/memory_cxx.h"
-}  // namespace libfar
+#include "libfar/far_memory.hxx"
+#else
+#include "libfar/far_memory.h"
 #endif
 #endif  //! defined(FAR_CUSTOM_ALLOCATORS)
 
