@@ -17,6 +17,16 @@ function(SimdOption _varName _defaultValue _featureName)
   endif()
 endfunction()
 
+function(LanguageOption)
+  set(FAR_LANG "C" CACHE STRING "Library language")
+  set_property(CACHE FAR_LANG PROPERTY STRINGS "C" "C++")
+  if ("${FAR_LANG}" STREQUAL "C++")
+    set(FAR_LANG_CPP 1 PARENT_SCOPE)
+  else()
+    set(FAR_LANG_C 1 PARENT_SCOPE)
+  endif()
+endfunction()
+
 #---------------------------------------------------------------------
 #
 # Project
@@ -41,6 +51,24 @@ SimdOption(SSE41 RuntimeCheckEnabled "SSE4.1")
 SimdOption(SSE42 RuntimeCheckEnabled "SSE4.2")
 SimdOption(AVX RuntimeCheckEnabled "AVX")
 SimdOption(AVX2 RuntimeCheckEnabled "AVX2")
+LanguageOption()
+
+# Library language
+if (FAR_LANG_C)
+  message(STATUS "Compiling libfar as a C library.")
+  if (MSVC)
+    set(FAR_CXXFLAGS "${FAR_CXXFLAGS} /TC")
+  else()
+    set(FAR_CXXFLAGS "${FAR_CXXFLAGS} -x c")
+  endif()
+elseif (FAR_LANG_CPP)
+  message(STATUS "Compiling libfar as a C++ library.")
+  if (MSVC)
+    set(FAR_CXXFLAGS "${FAR_CXXFLAGS} /TP")
+  else()
+    set(FAR_CXXFLAGS "${FAR_CXXFLAGS} -x c++")
+  endif()
+endif()
 
 # Platform
 if ( APPLE )
@@ -83,14 +111,18 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang") # Both Clang and Apple-Clang
     set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} -flto=thin")
 endif()
 
+set(libfar_source_files
+    src/adapt.c
+    src/cpuid.c
+    src/resample.c
+    src/fpu/adapt_fpu.c
+    src/fpu/resample_fpu.c
+    src/sse41/adapt_sse41.c
+    src/sse41/resample_sse41.c
+)
+
 add_library(libfar STATIC
-    "src/adapt.c"
-    "src/cpuid.c"
-    "src/resample.c"
-    "src/fpu/adapt_fpu.c"
-    "src/fpu/resample_fpu.c"
-    "src/sse41/adapt_sse41.c"
-    "src/sse41/resample_sse41.c"
+    ${libfar_source_files}
     "include/libfar.h"
     "include/libfar/libfar_config.h"
     "include/libfar/libfar_version.h"
@@ -102,6 +134,15 @@ add_library(libfar STATIC
     "include/libfar/sse41/adapt_sse41.h"
     "include/libfar/sse41/resample_sse41.h"
 )
+
+# Source files have the .c extension, which defaults to C code.
+# When compiling the library as C++, force the language.
+if (FAR_LANG_CPP)
+    set_source_files_properties(
+        ${libfar_source_files}
+        PROPERTIES LANGUAGE CXX
+    )
+endif()
 
 target_include_directories(libfar
     PUBLIC
