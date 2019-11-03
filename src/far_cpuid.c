@@ -1,6 +1,10 @@
 
-#include "libfar/cpuid.h"
+#include "libfar/far_cpuid.h"
 #include "libfar/base.h"
+
+#if !defined(_MSC_VER)
+#include <cpuid.h>
+#endif
 
 static far_bool g_cpuIdInitialized = far_false;
 static far_bool g_hasSSE = far_false;

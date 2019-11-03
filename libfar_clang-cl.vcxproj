@@ -117,6 +117,8 @@
     <ClInclude Include="include\libfar\adapt.h" />
     <ClInclude Include="include\libfar\base.h" />
     <ClInclude Include="include\libfar\cpuid.h" />
+    <ClInclude Include="include\libfar\far_memory.h" />
+    <ClInclude Include="include\libfar\far_memory.hxx" />
     <ClInclude Include="include\libfar\fpu\adapt_fpu.h" />
     <ClInclude Include="include\libfar\resample.h" />
     <ClInclude Include="include\libfar\sse41\adapt_sse41.h" />

@@ -113,7 +113,7 @@ endif()
 
 set(libfar_source_files
     src/adapt.c
-    src/cpuid.c
+    src/far_cpuid.c
     src/resample.c
     src/fpu/adapt_fpu.c
     src/fpu/resample_fpu.c
@@ -127,7 +127,7 @@ add_library(libfar STATIC
     "include/libfar/libfar_config.h"
     "include/libfar/libfar_version.h"
     "include/libfar/adapt.h"
-    "include/libfar/cpuid.h"
+    "include/libfar/far_cpuid.h"
     "include/libfar/resample.h"
     "include/libfar/fpu/adapt_fpu.h"
     "include/libfar/fpu/resample_fpu.h"

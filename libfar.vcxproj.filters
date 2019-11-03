@@ -4,9 +4,6 @@
     <ClCompile Include="src\adapt.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpuid.c">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\resample.c">
       <Filter>src</Filter>
     </ClCompile>
@@ -25,6 +22,9 @@
     <ClCompile Include="tools\main.c">
       <Filter>tools</Filter>
     </ClCompile>
+    <ClCompile Include="src\far_cpuid.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\libfar.h">
@@ -42,9 +42,6 @@
     <ClInclude Include="include\libfar\base.h">
       <Filter>include\libfar</Filter>
     </ClInclude>
-    <ClInclude Include="include\libfar\cpuid.h">
-      <Filter>include\libfar</Filter>
-    </ClInclude>
     <ClInclude Include="include\libfar\resample.h">
       <Filter>include\libfar</Filter>
     </ClInclude>
@@ -54,7 +51,13 @@
     <ClInclude Include="include\libfar\sse41\resample_sse41.h">
       <Filter>include\libfar\sse41</Filter>
     </ClInclude>
-    <ClInclude Include="include\libfar\memory_cxx.h">
+    <ClInclude Include="include\libfar\far_memory.h">
+      <Filter>include\libfar</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\far_memory.hxx">
+      <Filter>include\libfar</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\far_cpuid.h">
       <Filter>include\libfar</Filter>
     </ClInclude>
   </ItemGroup>

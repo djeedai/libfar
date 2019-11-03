@@ -96,7 +96,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\adapt.c" />
-    <ClCompile Include="src\cpuid.c" />
+    <ClCompile Include="src\far_cpuid.c" />
     <ClCompile Include="src\fpu\adapt_fpu.c" />
     <ClCompile Include="src\resample.c" />
     <ClCompile Include="src\fpu\resample_fpu.c" />
@@ -108,10 +108,11 @@
     <ClInclude Include="include\libfar.h" />
     <ClInclude Include="include\libfar\adapt.h" />
     <ClInclude Include="include\libfar\base.h" />
-    <ClInclude Include="include\libfar\cpuid.h" />
+    <ClInclude Include="include\libfar\far_cpuid.h" />
+    <ClInclude Include="include\libfar\far_memory.h" />
+    <ClInclude Include="include\libfar\far_memory.hxx" />
     <ClInclude Include="include\libfar\fpu\adapt_fpu.h" />
     <ClInclude Include="include\libfar\fpu\resample_fpu.h" />
-    <ClInclude Include="include\libfar\memory_cxx.h" />
     <ClInclude Include="include\libfar\resample.h" />
     <ClInclude Include="include\libfar\sse41\adapt_sse41.h" />
     <ClInclude Include="include\libfar\sse41\resample_sse41.h" />

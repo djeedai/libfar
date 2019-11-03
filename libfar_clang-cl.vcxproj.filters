@@ -48,6 +48,12 @@
     <ClInclude Include="include\libfar\fpu\adapt_fpu.h">
       <Filter>include\libfar\fpu</Filter>
     </ClInclude>
+    <ClInclude Include="include\libfar\far_memory.h">
+      <Filter>include\libfar</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libfar\far_memory.hxx">
+      <Filter>include\libfar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />

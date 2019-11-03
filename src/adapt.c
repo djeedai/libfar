@@ -1,6 +1,6 @@
 
 #include "libfar/base.h"
-#include "libfar/cpuid.h"
+#include "libfar/far_cpuid.h"
 
 #include "libfar/fpu/adapt_fpu.h"
 #include "libfar/sse41/adapt_sse41.h"

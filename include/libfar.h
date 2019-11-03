@@ -3,7 +3,7 @@
 #include "libfar/base.h"
 
 // Query CPU support for SIMD extensions at runtime.
-#include "libfar/cpuid.h"
+#include "libfar/far_cpuid.h"
 
 // Adapt channel count (convert mono/stereo).
 #include "libfar/adapt.h"
