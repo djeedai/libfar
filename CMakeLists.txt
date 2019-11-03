@@ -169,4 +169,9 @@ add_executable(libfar_tests
     "test/pch.h"
 )
 
+target_include_directories(libfar_tests
+    PUBLIC
+    include
+)
+
 gtest_add_tests(TARGET libfar_tests)
