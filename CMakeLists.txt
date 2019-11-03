@@ -144,6 +144,18 @@ if (FAR_LANG_CPP)
     )
 endif()
 
+# Assign SSE options
+if (MSVC)
+    # Anything to do?
+else()
+    set(FAR_SSE41_FLAG "-msse41")
+endif()
+set_source_files_properties(
+    src/sse41/adapt_sse41.c
+    src/sse41/resample_sse41.c
+    PROPERTIES COMPILE_FLAGS "${FAR_SSE41_FLAG}"
+)
+
 target_include_directories(libfar
     PUBLIC
     include
