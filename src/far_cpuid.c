@@ -2,8 +2,15 @@
 #include "libfar/far_cpuid.h"
 #include "libfar/base.h"
 
-#if !defined(_MSC_VER)
+#if defined(_MSC_VER)
+static inline void far_cpuid(int id, int cpuinfo[4]) {
+  __cpuid(cpuinfo, id);
+}
+#else
 #include <cpuid.h>
+static inline void far_cpuid(int id, int cpuinfo[4]) {
+  __get_cpuid(id, &cpuinfo[0], &cpuinfo[1], &cpuinfo[2], &cpuinfo[3]);
+}
 #endif
 
 static far_bool g_cpuIdInitialized = far_false;
@@ -20,17 +27,17 @@ namespace libfar {
 
 void FAR_FN(cpuid_init)() {
   int cpuinfo[4];
-  __cpuid(cpuinfo, 0);
+  far_cpuid(0, cpuinfo);
   int numIds = cpuinfo[0];
   int ecx1 = 0, edx1 = 0;
   if (numIds >= 1) {
-    __cpuid(cpuinfo, 1);
+    far_cpuid(1, cpuinfo);
     ecx1 = cpuinfo[2];
     edx1 = cpuinfo[3];
   }
   int ecx7 = 0, edx7 = 0;
   if (numIds >= 7) {
-    __cpuid(cpuinfo, 7);
+    far_cpuid(7, cpuinfo);
     ecx7 = cpuinfo[2];
     edx7 = cpuinfo[3];
   }
