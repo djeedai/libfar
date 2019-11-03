@@ -157,6 +157,20 @@ typedef struct float512 __attribute__((aligned(64))) {
 static_assert(sizeof(float512) == 64, "");
 #endif  // _MSC_VER
 
+// Allocation size hint for functions returning a memory buffer.
+#ifdef _MSC_VER
+#define FAR_ALLOC_SIZE(arg_n)
+#else
+#define FAR_ALLOC_SIZE(arg_n) __attribute__((alloc_size(arg_n)))
+#endif
+
+// Alignment hint for functions returning a non-aligned pointer.
+#ifdef _MSC_VER
+#define FAR_ALIGNED_RET(arg_n)
+#else
+#define FAR_ALIGNED_RET(arg_n) __attribute__((alloc_align(arg_n)))
+#endif
+
 // Aligned allocations for SIMD
 #if !defined(FAR_CUSTOM_ALLOCATORS)
 #ifdef __cplusplus

@@ -28,7 +28,7 @@ inline void free_align(void* ptr) {
 
 // C11's aligned_alloc requires a size multiple of the alignment
 
-inline void* malloc_align(size_t size, size_t align) {
+inline void* malloc_align(size_t size, size_t align) FAR_ALLOC_SIZE(1) FAR_ALIGNED_RET(2) {
   const size_t padded_size = (size + align - 1);
   const size_t aligned_size = padded_size - (padded_size % align);
   // TODO - check this and remove
@@ -69,14 +69,14 @@ inline byte64* malloc_align64(size_t size) {
 
 // C11's aligned_alloc requires a size multiple of the alignment
 
-inline byte16* malloc_align16(size_t size) {
+inline byte16* malloc_align16(size_t size) FAR_ALLOC_SIZE(1) {
   return (byte16*)malloc_align(16, (size + 15) & ~((size_t)15));
 }
-inline byte32* malloc_align32(size_t size) {
+inline byte32* malloc_align32(size_t size) FAR_ALLOC_SIZE(1) {
   return (byte32*)malloc_align(32, (size + 31) & ~((size_t)31));
 }
 
-inline byte64* malloc_align64(size_t size) {
+inline byte64* malloc_align64(size_t size) FAR_ALLOC_SIZE(1) {
   return (byte64*)malloc_align(64, (size + 63) & ~((size_t)63));
 }
 
@@ -103,32 +103,32 @@ template <typename T>
 T* malloc_align(size_t size);
 
 template <>
-inline float128* malloc_align(size_t size) {
+inline float128* malloc_align(size_t size) FAR_ALLOC_SIZE(1) {
   return reinterpret_cast<float128*>(malloc_align16(size));
 }
 
 template <>
-inline float256* malloc_align(size_t size) {
+inline float256* malloc_align(size_t size) FAR_ALLOC_SIZE(1) {
   return reinterpret_cast<float256*>(malloc_align32(size));
 }
 
 template <>
-inline float512* malloc_align(size_t size) {
+inline float512* malloc_align(size_t size) FAR_ALLOC_SIZE(1) {
   return reinterpret_cast<float512*>(malloc_align64(size));
 }
 
 template <>
-inline short128* malloc_align(size_t size) {
+inline short128* malloc_align(size_t size) FAR_ALLOC_SIZE(1) {
   return reinterpret_cast<short128*>(malloc_align16(size));
 }
 
 template <>
-inline short256* malloc_align(size_t size) {
+inline short256* malloc_align(size_t size) FAR_ALLOC_SIZE(1) {
   return reinterpret_cast<short256*>(malloc_align32(size));
 }
 
 template <>
-inline short512* malloc_align(size_t size) {
+inline short512* malloc_align(size_t size) FAR_ALLOC_SIZE(1) {
   return reinterpret_cast<short512*>(malloc_align64(size));
 }
 
