@@ -33,7 +33,7 @@ jobs:
     - name: Download GoogleTest
       run: nuget install Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn -Version 1.8.1 -OutputDirectory packages/ -Verbosity detailed -SolutionDirectory build/
     - name: DEBUG - List content
-      run: dir /s /b packages
+      run: Get-ChildItem -Path packages -Recurse
     - name: Configure
       working-directory: build
       run: cmake -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 16 2019" -DFAR_LANG="C++" ../
