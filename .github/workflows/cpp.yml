@@ -13,7 +13,7 @@ jobs:
       run: mkdir build/
     - name: Configure
       working-directory: build
-      run: cmake -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 16 2019" -DFAR_LANG="C++"
+      run: cmake -DCMAKE_BUILD_TYPE=Release -G"Unix Makefiles" -DFAR_LANG="C++" ../
     - name: Compile
       working-directory: build
       run: cmake --build . --config Release -j 4
@@ -28,7 +28,7 @@ jobs:
       run: mkdir build/
     - name: Configure
       working-directory: build
-      run: cmake -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 16 2019" -DFAR_LANG="C++"
+      run: cmake -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 16 2019" -DFAR_LANG="C++" ../
     - name: Compile
       working-directory: build
       run: cmake --build . --config Release -j 4
