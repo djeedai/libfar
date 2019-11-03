@@ -9,6 +9,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+    - name: Prepare
+      run: mkdir build/
     - name: Configure
       working-directory: build
       run: cmake -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 16 2019" -DFAR_LANG="C++"
@@ -22,6 +24,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+    - name: Prepare
+      run: mkdir build/
     - name: Configure
       working-directory: build
       run: cmake -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 16 2019" -DFAR_LANG="C++"
