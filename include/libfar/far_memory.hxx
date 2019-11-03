@@ -3,6 +3,9 @@
 #include "libfar/base.h"
 
 #ifdef __cplusplus
+
+#include <cassert>
+
 namespace libfar {
 
 //

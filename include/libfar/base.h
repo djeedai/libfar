@@ -116,10 +116,45 @@ typedef struct __declspec(align(64)) float512 {
 } float512;
 static_assert(sizeof(float512) == 64, "");
 #else   // _MSC_VER
-typedef char __attribute__((align(4))) byte4;
-typedef char __attribute__((align(8))) byte4;
-typedef char __attribute__((align(16)) byte16;
-typedef char __attribute__((align(32)) byte32;
+typedef struct byte4 {
+  char c __attribute__((align(4)));
+} byte4;
+typedef struct byte8 {
+  char c __attribute__((align(8)));
+} byte8;
+typedef struct byte16 {
+  char c __attribute__((align(16)));
+} byte16;
+typedef struct byte32 {
+  char c __attribute__((align(32)));
+} byte32;
+typedef struct byte64 {
+  char c __attribute__((align(64)));
+} byte64;
+typedef struct short128 __attribute__((align(16))) {
+  int16 c[8];
+} short128;
+static_assert(sizeof(short128) == 16, "");
+typedef struct short256 __attribute__((align(32))) {
+  int16 c[16];
+} short256;
+static_assert(sizeof(short256) == 32, "");
+typedef struct short512 __attribute__((align(64))) {
+  int16 c[32];
+} short512;
+static_assert(sizeof(short512) == 64, "");
+typedef struct float128 __attribute__((align(16))) {
+  float c[4];
+} float128;
+static_assert(sizeof(float128) == 16, "");
+typedef struct float256 __attribute__((align(32))) {
+  float c[8];
+} float256;
+static_assert(sizeof(float256) == 32, "");
+typedef struct float512 __attribute__((align(64))) {
+  float c[16];
+} float512;
+static_assert(sizeof(float512) == 64, "");
 #endif  // _MSC_VER
 
 // Aligned allocations for SIMD
