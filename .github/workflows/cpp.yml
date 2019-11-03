@@ -1,0 +1,30 @@
+name: C++ CI
+
+on: [push]
+
+jobs:
+  build-ubuntu:
+    name: Build (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Configure
+      working-directory: build
+      run: cmake -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 16 2019" -DFAR_LANG="C++"
+    - name: Compile
+      working-directory: build
+      run: cmake --build . --config Release -j 4
+      
+  build-windows:
+    name: Build (Windows)
+    runs-on: windows-2019
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Configure
+      working-directory: build
+      run: cmake -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 16 2019" -DFAR_LANG="C++"
+    - name: Compile
+      working-directory: build
+      run: cmake --build . --config Release -j 4
