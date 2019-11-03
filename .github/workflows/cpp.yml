@@ -26,6 +26,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+    - name: Setup Nuget
+      uses: warrenbuckley/Setup-Nuget@v1
     - name: Prepare
       run: mkdir build/
     - name: Download GoogleTest
