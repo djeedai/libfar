@@ -32,7 +32,7 @@ jobs:
       run: mkdir build/
     - name: Download GoogleTest
       run: nuget install Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn -Version 0.17.1 -OutputDirectory packages/ -Verbosity detailed -SolutionDirectory build/
-    - name: [DEBUG] List content
+    - name: DEBUG - List content
       run: dir /s /b packages
     - name: Configure
       working-directory: build
