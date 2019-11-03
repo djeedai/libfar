@@ -11,6 +11,8 @@ jobs:
       uses: actions/checkout@v1
     - name: Prepare
       run: mkdir build/
+    - name: Download GoogleTest
+      run: sudo apt-get install libgtest-dev
     - name: Configure
       working-directory: build
       run: cmake -DCMAKE_BUILD_TYPE=Release -G"Unix Makefiles" -DFAR_LANG="C++" ../
@@ -26,6 +28,8 @@ jobs:
       uses: actions/checkout@v1
     - name: Prepare
       run: mkdir build/
+    - name: Download GoogleTest
+      run: nuget install GoogleTestAdapter -Version 0.17.1 -OutputDirectory packages/ -Verbosity detailed -SolutionDirectory build/
     - name: Configure
       working-directory: build
       run: cmake -DCMAKE_BUILD_TYPE=Release -G"Visual Studio 16 2019" -DFAR_LANG="C++" ../
