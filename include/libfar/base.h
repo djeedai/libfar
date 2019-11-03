@@ -69,6 +69,9 @@ typedef struct byte16 {
 typedef struct byte32 {
   char __declspec(align(32)) c;
 } byte32;
+typedef struct byte64 {
+  char __declspec(align(64)) c;
+} byte64;
 typedef struct __declspec(align(16)) short128 {
   signed short c[8];
 } short128;
