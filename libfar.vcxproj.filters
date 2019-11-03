@@ -54,6 +54,9 @@
     <ClInclude Include="include\libfar\sse41\resample_sse41.h">
       <Filter>include\libfar\sse41</Filter>
     </ClInclude>
+    <ClInclude Include="include\libfar\memory_cxx.h">
+      <Filter>include\libfar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />

@@ -73,15 +73,15 @@ typedef struct byte64 {
   char __declspec(align(64)) c;
 } byte64;
 typedef struct __declspec(align(16)) short128 {
-  signed short c[8];
+  int16 c[8];
 } short128;
 static_assert(sizeof(short128) == 16, "");
 typedef struct __declspec(align(32)) short256 {
-  signed short c[16];
+  int16 c[16];
 } short256;
 static_assert(sizeof(short256) == 32, "");
 typedef struct __declspec(align(64)) short512 {
-  signed short c[32];
+  int16 c[32];
 } short512;
 static_assert(sizeof(short512) == 64, "");
 typedef struct __declspec(align(16)) float128 {
@@ -141,13 +141,26 @@ inline void* FAR_FN(malloc_align)(size_t size, size_t align) {
 #ifdef __cplusplus
 namespace libfar {
 #endif
+inline byte16* FAR_FN(malloc_align16)(size_t size) {
+  return (byte16*)FAR_FN(malloc_align)(size, 16);
+}
+inline void FAR_FN(free_align16)(byte16* ptr) {
+  FAR_FN(free_align)((char*)ptr);
+}
 inline byte32* FAR_FN(malloc_align32)(size_t size) {
   return (byte32*)FAR_FN(malloc_align)(size, 32);
 }
 inline void FAR_FN(free_align32)(byte32* ptr) {
   FAR_FN(free_align)((char*)ptr);
 }
+inline byte64* FAR_FN(malloc_align64)(size_t size) {
+  return (byte64*)FAR_FN(malloc_align)(size, 64);
+}
+inline void FAR_FN(free_align64)(byte64* ptr) {
+  FAR_FN(free_align)((char*)ptr);
+}
 #ifdef __cplusplus
+#include "libfar/memory_cxx.h"
 }  // namespace libfar
 #endif
 #endif  //! defined(FAR_CUSTOM_ALLOCATORS)

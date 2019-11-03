@@ -58,9 +58,9 @@ TEST(Adapt, Ch2x1f32) {
 }
 
 TEST(Adapt, Ch1x2s16) {
-  int16* buf_in = (int16*)libfar::malloc_align(70, 64);  // 16N+3
+  int16* buf_in = (int16*)libfar::malloc_align<short512>(70);  // 16N+3
   ASSERT_NE(nullptr, buf_in);
-  int16* buf_out = (int16*)libfar::malloc_align(140, 64);
+  int16* buf_out = (int16*)libfar::malloc_align<short512>(140);
   ASSERT_NE(nullptr, buf_out);
 
   for (int i = 0; i < 35; ++i) {

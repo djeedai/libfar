@@ -111,6 +111,7 @@
     <ClInclude Include="include\libfar\cpuid.h" />
     <ClInclude Include="include\libfar\fpu\adapt_fpu.h" />
     <ClInclude Include="include\libfar\fpu\resample_fpu.h" />
+    <ClInclude Include="include\libfar\memory_cxx.h" />
     <ClInclude Include="include\libfar\resample.h" />
     <ClInclude Include="include\libfar\sse41\adapt_sse41.h" />
     <ClInclude Include="include\libfar\sse41\resample_sse41.h" />
