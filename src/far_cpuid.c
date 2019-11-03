@@ -9,7 +9,8 @@ static inline void far_cpuid(int id, int cpuinfo[4]) {
 #else
 #include <cpuid.h>
 static inline void far_cpuid(int id, int cpuinfo[4]) {
-  __get_cpuid(id, &cpuinfo[0], &cpuinfo[1], &cpuinfo[2], &cpuinfo[3]);
+  __get_cpuid(id, (unsigned int*)&cpuinfo[0], (unsigned int*)&cpuinfo[1],
+              (unsigned int*)&cpuinfo[2], (unsigned int*)&cpuinfo[3]);
 }
 #endif
 
