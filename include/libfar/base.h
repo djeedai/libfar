@@ -173,6 +173,14 @@ static_assert(sizeof(float512) == 64, "");
 
 // Aligned allocations for SIMD
 #if !defined(FAR_CUSTOM_ALLOCATORS)
+void* FAR_FN(malloc_align)(size_t size, size_t align) FAR_ALLOC_SIZE(1) FAR_ALIGNED_RET(2);
+byte16* FAR_FN(malloc_align16)(size_t size) FAR_ALLOC_SIZE(1);
+byte32* FAR_FN(malloc_align32)(size_t size) FAR_ALLOC_SIZE(1);
+byte64* FAR_FN(malloc_align64)(size_t size) FAR_ALLOC_SIZE(1);
+void FAR_FN(free_align)(void* ptr);
+void FAR_FN(free_align16)(byte16* ptr);
+void FAR_FN(free_align32)(byte32* ptr);
+void FAR_FN(free_align64)(byte64* ptr);
 #ifdef __cplusplus
 #include "libfar/far_memory.hxx"
 #else

@@ -4,6 +4,7 @@
 
 #if !defined(__cplusplus)
 
+
 //
 // Generic aligned allocator
 //
@@ -24,7 +25,7 @@ inline void FAR_FN(free_align)(void* ptr) {
 
 // C11's aligned_alloc requires a size multiple of the alignment
 
-inline void* FAR_FN(malloc_align)(size_t size, size_t align) FAR_ALLOC_SIZE(1) FAR_ALIGNED_RET(2) {
+inline void* FAR_FN(malloc_align)(size_t size, size_t align) {
   const size_t padded_size = (size + align - 1);
   const size_t aligned_size = padded_size - (padded_size % align);
   // TODO - check this and remove
@@ -77,15 +78,15 @@ inline void FAR_FN(free_align64)(byte64* ptr) {
 
 // C11's aligned_alloc requires a size multiple of the alignment
 
-inline byte16* FAR_FN(malloc_align16)(size_t size) FAR_ALLOC_SIZE(1) {
+inline byte16* FAR_FN(malloc_align16)(size_t size) {
   return (byte16*)aligned_alloc(16, (size + 15) & ~((size_t)15));
 }
 
-inline byte32* FAR_FN(malloc_align32)(size_t size) FAR_ALLOC_SIZE(1) {
+inline byte32* FAR_FN(malloc_align32)(size_t size) {
   return (byte32*)aligned_alloc(32, (size + 31) & ~((size_t)31));
 }
 
-inline byte64* FAR_FN(malloc_align64)(size_t size) FAR_ALLOC_SIZE(1) {
+inline byte64* FAR_FN(malloc_align64)(size_t size) {
   return (byte64*)aligned_alloc(64, (size + 63) & ~((size_t)63));
 }
 
