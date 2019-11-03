@@ -7,6 +7,7 @@
 #else  // __cplusplus
 #include <assert.h>
 #include <stdlib.h>
+#include <stdint.h>
 #ifdef __clang__
 #include <stdalign.h>
 // Should be defined in assert.h in C11, but clang-cl is missing it
@@ -36,6 +37,17 @@
 #if !defined(FAR_API)
 #define FAR_API
 #endif
+
+// Boolean
+#ifdef __cplusplus
+using far_bool = bool;
+constexpr bool far_true = true;
+constexpr bool far_false = false;
+#else  // __cplusplus
+typedef int32_t far_bool;
+#define far_true ((far_bool)-1)
+#define far_false ((far_bool)0)
+#endif  // __cplusplus
 
 // Base types
 typedef unsigned char uint8;
