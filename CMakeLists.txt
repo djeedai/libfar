@@ -159,8 +159,6 @@ set_source_files_properties(
 target_include_directories(libfar
     PUBLIC
     include
-    PRIVATE
-    ${CMAKE_BINARY_DIR}
 )
 
 # Configure
