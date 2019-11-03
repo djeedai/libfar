@@ -179,6 +179,14 @@ add_executable(libfar_tests
     "test/pch.h"
 )
 
+# GoogleTest is only C++
+set_source_files_properties(
+    "test/test_adapt.cpp"
+    "test/test_memory.cpp"
+    "test/test_resample.cpp"
+    PROPERTIES LANGUAGE CXX
+)
+
 target_include_directories(libfar_tests
     PUBLIC
     include
