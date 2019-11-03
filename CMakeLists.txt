@@ -148,7 +148,7 @@ endif()
 if (MSVC)
     # Anything to do?
 else()
-    set(FAR_SSE41_FLAG "-msse41")
+    set(FAR_SSE41_FLAG "-msse4.1")
 endif()
 set_source_files_properties(
     src/sse41/adapt_sse41.c
