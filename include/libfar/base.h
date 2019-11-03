@@ -9,8 +9,8 @@
 #include <cstdlib>
 #else  // __cplusplus
 #include <assert.h>
-#include <stdlib.h>
 #include <stdint.h>
+#include <stdlib.h>
 #ifdef __clang__
 #include <stdalign.h>
 // Should be defined in assert.h in C11, but clang-cl is missing it
@@ -38,8 +38,24 @@
 
 // To allow shared library compiling
 #if !defined(FAR_API)
+#ifdef _MSC_VER
 #define FAR_API
+#else
+#define FAR_API __attribute__((visibility("default")))
 #endif
+#endif
+
+// Pointer aliasing optimization
+#ifdef _MSC_VER
+#define FAR_RESTRICT __restrict
+#elif defined(__cplusplus)
+#define FAR_RESTRICT __restrict__
+#else  // _MSC_VER
+#define FAR_RESTRICT restrict
+#endif  // _MSC_VER
+
+// Unused parameter
+#define FAR_UNUSED(x) (void)x
 
 // Boolean
 #ifdef __cplusplus
@@ -167,12 +183,6 @@ inline void FAR_FN(free_align64)(byte64* ptr) {
 }  // namespace libfar
 #endif
 #endif  //! defined(FAR_CUSTOM_ALLOCATORS)
-
-// Pointer aliasing optimization
-#define FAR_RESTRICT __restrict
-
-// Unused parameter
-#define FAR_UNUSED(x) (void)x
 
 #ifdef _MSC_VER
 #include <intrin.h>
