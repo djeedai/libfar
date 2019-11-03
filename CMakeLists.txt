@@ -184,6 +184,7 @@ add_executable(libfar_tests
 target_include_directories(libfar_tests
     PUBLIC
     include
+    packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.1\build\native\include
 )
 
 gtest_add_tests(TARGET libfar_tests)
