@@ -2,13 +2,13 @@
 #include "libfar/cpuid.h"
 #include "libfar/base.h"
 
-static int g_cpuIdInitialized = 0;
-static int g_hasSSE = 0;
-static int g_hasSSE2 = 0;
-static int g_hasSSE3 = 0;
-static int g_hasSSSE3 = 0;
-static int g_hasSSE41 = 0;
-static int g_hasSSE42 = 0;
+static far_bool g_cpuIdInitialized = far_false;
+static far_bool g_hasSSE = far_false;
+static far_bool g_hasSSE2 = far_false;
+static far_bool g_hasSSE3 = far_false;
+static far_bool g_hasSSSE3 = far_false;
+static far_bool g_hasSSE41 = far_false;
+static far_bool g_hasSSE42 = far_false;
 
 #ifdef __cplusplus
 namespace libfar {
@@ -30,56 +30,56 @@ void FAR_FN(cpuid_init)() {
     ecx7 = cpuinfo[2];
     edx7 = cpuinfo[3];
   }
-  g_hasSSE = (edx1 & 0x02000000);
-  g_hasSSE2 = (edx1 & 0x04000000);
-  g_hasSSE3 = (ecx1 & 0x00000001);
-  g_hasSSSE3 = (ecx1 & 0x00000200);
-  g_hasSSE41 = (ecx1 & 0x00080000);
-  g_hasSSE42 = (ecx1 & 0x00100000);
+  g_hasSSE = (edx1 & 0x02000000) ? far_true : far_false;
+  g_hasSSE2 = (edx1 & 0x04000000) ? far_true : far_false;
+  g_hasSSE3 = (ecx1 & 0x00000001) ? far_true : far_false;
+  g_hasSSSE3 = (ecx1 & 0x00000200) ? far_true : far_false;
+  g_hasSSE41 = (ecx1 & 0x00080000) ? far_true : far_false;
+  g_hasSSE42 = (ecx1 & 0x00100000) ? far_true : far_false;
   // Support for AVX is more complex to test, requires 3 checks including
   // _xgetbv(_XCR_XFEATURE_ENABLED_MASK) & 0x6
   // https://insufficientlycomplicated.wordpress.com/2011/11/07/detecting-intel-advanced-vector-extensions-avx-in-visual-studio/
   // https://software.intel.com/en-us/blogs/2011/04/14/is-avx-enabled/
-  g_cpuIdInitialized = -1;
+  g_cpuIdInitialized = far_true;
 }
 
-int FAR_FN(has_sse)() {
-  if (!g_cpuIdInitialized) {
+far_bool FAR_FN(has_sse)() {
+  if (g_cpuIdInitialized == far_false) {
     FAR_FN(cpuid_init)();
   }
   return g_hasSSE;
 }
 
-int FAR_FN(has_sse2)() {
-  if (!g_cpuIdInitialized) {
+far_bool FAR_FN(has_sse2)() {
+  if (g_cpuIdInitialized == far_false) {
     FAR_FN(cpuid_init)();
   }
   return g_hasSSE2;
 }
 
-int FAR_FN(has_sse3)() {
-  if (!g_cpuIdInitialized) {
+far_bool FAR_FN(has_sse3)() {
+  if (g_cpuIdInitialized == far_false) {
     FAR_FN(cpuid_init)();
   }
   return g_hasSSE3;
 }
 
-int FAR_FN(has_ssse3)() {
-  if (!g_cpuIdInitialized) {
+far_bool FAR_FN(has_ssse3)() {
+  if (g_cpuIdInitialized == far_false) {
     FAR_FN(cpuid_init)();
   }
   return g_hasSSSE3;
 }
 
-int FAR_FN(has_sse41)() {
-  if (!g_cpuIdInitialized) {
+far_bool FAR_FN(has_sse41)() {
+  if (g_cpuIdInitialized == far_false) {
     FAR_FN(cpuid_init)();
   }
   return g_hasSSE41;
 }
 
-int FAR_FN(has_sse42)() {
-  if (!g_cpuIdInitialized) {
+far_bool FAR_FN(has_sse42)() {
+  if (g_cpuIdInitialized == far_false) {
     FAR_FN(cpuid_init)();
   }
   return g_hasSSE42;

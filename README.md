@@ -248,14 +248,14 @@ The template is only instantiated for the `intX` and `floatX` type aliases.
 
 ### CPUID
 
-Utilities to detect CPU features at runtime and dynamically select the fastest implementation of each library function available on the current host CPU.
+Utilities to detect CPU features at runtime and dynamically select the fastest implementation of each library function available on the current host CPU. This is generally used internally only.
 
 | Name | Description |
 |---|---|
 | `void cpuid_init()` | Query and cache the hardware feature support for the host machine. Called once automatically before any of the other functions below; the result is cached after that. |
-| `int has_sse()` | Return `true` if SSE is available on the host machine. |
-| `int has_sse2()` | Return `true` if SSE2 is available on the host machine. |
-| `int has_sse3()` | Return `true` if SSE3 is available on the host machine. |
-| `int has_ssse3()` | Return `true` if SSSE3 is available on the host machine. |
-| `int has_sse41()` | Return `true` if SSE4.1 is available on the host machine. |
-| `int has_sse42()` | Return `true` if SSE4.2 is available on the host machine. |
+| `far_bool has_sse()` | Return `far_true` if SSE is available on the host machine. |
+| `far_bool has_sse2()` | Return `far_true` if SSE2 is available on the host machine. |
+| `far_bool has_sse3()` | Return `far_true` if SSE3 is available on the host machine. |
+| `far_bool has_ssse3()` | Return `far_true` if SSSE3 is available on the host machine. |
+| `far_bool has_sse41()` | Return `far_true` if SSE4.1 is available on the host machine. |
+| `far_bool has_sse42()` | Return `far_true` if SSE4.2 is available on the host machine. |
