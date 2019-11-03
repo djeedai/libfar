@@ -102,7 +102,7 @@ constexpr bool far_false = false;
 Buffers are over-aligned compared to standard C/C++ rules to improve performance with SIMD. Special types aliases are defined for those buffers to make the alignment requirement explicit via the type name. There is currently no compile-time check, and it is still possible to pass the wrong type, so developers should be careful.
 
 | Sample type | Alignment | Aligned type alias |
-|---|---|---|---|
+|---|---|---|
 | Unspecified* | 4 bytes | `byte4` |
 | Unspecified* | 8 bytes | `byte8` |
 | Unspecified* | 16 bytes | `byte16` |
