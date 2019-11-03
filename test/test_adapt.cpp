@@ -64,7 +64,7 @@ TEST(Adapt, Ch1x2s16) {
   ASSERT_NE(nullptr, buf_out);
 
   for (int i = 0; i < 35; ++i) {
-    buf_in[i] = (i % 2 == 0 ? -1 : 1) * (i << 9);  // |abs| <= 17920
+    buf_in[i] = (int16)((i % 2 == 0 ? -1 : 1) * (i << 9));  // |abs| <= 17920
   }
 
   libfar::adapt_ch1x2s16((const short512*)buf_in, 70, 48000, (short512*)buf_out,
@@ -94,8 +94,8 @@ TEST(Adapt, Ch2x1s16) {
   // scenario) : (r + l) / 2 rounds with 0.5 error per sample.
   int16* p = buf_in;
   for (int i = 0; i < 35; ++i) {
-    *p++ = (i << 9) + 5;  // |abs| <= 17925
-    *p++ = (i << 9);      // |abs| <= 17920
+    *p++ = (int16)((i << 9) + 5);  // |abs| <= 17925
+    *p++ = (int16)((i << 9));      // |abs| <= 17920
   }
 
   libfar::adapt_ch2x1s16((const short512*)buf_in, 140, 48000,
