@@ -131,27 +131,27 @@ typedef struct byte32 {
 typedef struct byte64 {
   char c __attribute__((aligned(64)));
 } byte64;
-typedef struct short128 __attribute__((aligned(16))) {
+typedef struct __attribute__((aligned(16))) short128 {
   int16 c[8];
 } short128;
 static_assert(sizeof(short128) == 16, "");
-typedef struct short256 __attribute__((aligned(32))) {
+typedef struct __attribute__((aligned(32))) short256 {
   int16 c[16];
 } short256;
 static_assert(sizeof(short256) == 32, "");
-typedef struct short512 __attribute__((aligned(64))) {
+typedef struct __attribute__((aligned(64))) short512 {
   int16 c[32];
 } short512;
 static_assert(sizeof(short512) == 64, "");
-typedef struct float128 __attribute__((aligned(16))) {
+typedef struct __attribute__((aligned(16))) float128 {
   float c[4];
 } float128;
 static_assert(sizeof(float128) == 16, "");
-typedef struct float256 __attribute__((aligned(32))) {
+typedef struct __attribute__((aligned(32))) float256 {
   float c[8];
 } float256;
 static_assert(sizeof(float256) == 32, "");
-typedef struct float512 __attribute__((aligned(64))) {
+typedef struct __attribute__((aligned(64))) float512 {
   float c[16];
 } float512;
 static_assert(sizeof(float512) == 64, "");
