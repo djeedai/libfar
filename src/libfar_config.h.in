@@ -1,0 +1,34 @@
+#pragma once
+
+// Platform
+#cmakedefine LIBFAR_LINUX
+#cmakedefine LIBFAR_MACOSX
+#cmakedefine LIBFAR_WINDOWS
+
+// Enable dynamic runtime checks for SIMD support.
+// It is generally safe to enable support for all SIMD extensions, unless one
+// want to forcefully disable support for a particular extension that is known
+// never to be supported on the target host.
+#cmakedefine ENABLE_SSE
+#cmakedefine ENABLE_SSE2
+#cmakedefine ENABLE_SSE3
+#cmakedefine ENABLE_SSSE3
+#cmakedefine ENABLE_SSE41
+#cmakedefine ENABLE_SSE42
+#cmakedefine ENABLE_AVX
+#cmakedefine ENABLE_AVX2
+
+// Assume compile-time support for SIMD instruction set.
+// This will assume that the processor of the target host supports the extension
+// without doing any runtime check, and will emit the corresponding
+// instructions. If at runtime the target host does not support the extension,
+// the program will crash. correctly. Only use if the target host has a fixed
+// architecture with known fixed SIMD extensions.
+#cmakedefine ASSUME_SSE
+#cmakedefine ASSUME_SSE2
+#cmakedefine ASSUME_SSE3
+#cmakedefine ASSUME_SSSE3
+#cmakedefine ASSUME_SSE41
+#cmakedefine ASSUME_SSE42
+#cmakedefine ASSUME_AVX
+#cmakedefine ASSUME_AVX2

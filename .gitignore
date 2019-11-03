@@ -1,6 +1,18 @@
+
+# IDE
 *.vcxproj.user
 .vs
+.vscode
+
+# Build artifacts
 bin
 build
-data
+build_cmake
 packages
+
+# Test data
+data
+
+# Generated files
+include/libfar/libfar_config.h
+include/libfar/libfar_version.h

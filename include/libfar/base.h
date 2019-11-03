@@ -1,5 +1,8 @@
 #pragma once
 
+#include "libfar/libfar_config.h"
+#include "libfar/libfar_version.h"
+
 // Standard headers
 #if !defined(FAR_NO_STD_INCLUDES)
 #ifdef __cplusplus
